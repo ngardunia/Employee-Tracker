@@ -13,32 +13,36 @@ function mainQuestion() {
             type: 'list',
             name: 'mainQuestion',
             message: "What would you like to do?",
-            choices : ['View All', 'View Employees', 'View Departments', 'Quit']
+            choices : ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles',
+            'Add Role', 'View All Departments', 'Add Department', 'Quit']
         }
     ]).then(answer => {
         switch (answer.mainQuestion) {
-            case 'View All':
-                viewAll()
-                break;
-            case 'View Employees':
+            case 'View All Employees':
                 viewEmployees()
                 break;
-            case 'View Departments':
+            case 'Add Employee':
+                addEmployee()
+                break;
+            case 'Update Employee':
+                updateEmployeeRole()
+                break;
+            case 'View All Roles':
+                viewRoles()
+                break;
+            case 'Add Role':
+                addRole()
+                break;
+            case 'View All Departments':
                 viewDeparments()
                 break;
-            case 'View Roles':
-                viewRoles()
+            case 'Add Department':
+                addDepartment()
                 break;
             default:
                 connection.end()
         }
     })
-}
-
-function viewAll() {
-    console.log('view all tables in a join')
-
-    mainQuestion()
 }
 
 function viewRoles() {
@@ -60,5 +64,28 @@ function viewDeparments() {
         if (err) throw err;
         console.table(data)
     })
+    mainQuestion()
+}
+
+function addDepartment() {
+    console.log('addDepartment')
+    mainQuestion()
+}
+
+
+function addRole() {
+    console.log('addRole')
+    mainQuestion()
+}
+
+
+function addEmployee() {
+    console.log('addEmployee')
+    mainQuestion()
+}
+
+
+function updateEmployeeRole() {
+    console.log('updateEmployee')
     mainQuestion()
 }
