@@ -15,9 +15,9 @@
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/Hezakai/EmployeeTrack/issues"
+      "url": "https://github.com/ngardunia/Employee-Tracker/issues"
     },
-    "homepage": "https://github.com/Hezakai/EmployeeTrack#readme",
+    "homepage": "https://github.comngardunia/Employee-Tracker#readme",
     "dependencies": {
       "console.table": "^0.10.0",
       "inquirer": "^8.2.4",

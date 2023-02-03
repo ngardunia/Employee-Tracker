@@ -26,6 +26,9 @@ function mainQuestion() {
             case 'View Departments':
                 viewDeparments()
                 break;
+            case 'View Roles':
+                viewRoles()
+                break;
             default:
                 connection.end()
         }
@@ -35,6 +38,15 @@ function mainQuestion() {
 function viewAll() {
     console.log('view all tables in a join')
 
+    mainQuestion()
+}
+
+function viewRoles() {
+    console.log('view all tables in a join')
+    connection.query("SELECT role.title, role.salary, department.name FROM role JOIN department ON role.departement_id = department.id", (err, data) => {
+        if (err) throw err;
+        console.table(data)
+    })
     mainQuestion()
 }
 
