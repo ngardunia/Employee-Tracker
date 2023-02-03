@@ -55,7 +55,11 @@ function viewRoles() {
 }
 
 function viewEmployees() {
-    console.log('view only employees table');
+    connection.query("SELECT * FROM employee", (err, data) => {
+        if (err) throw err;
+        console.log(" ")
+        console.table(data)
+    })
     mainQuestion()
 }
 
