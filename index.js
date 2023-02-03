@@ -62,15 +62,30 @@ function viewEmployees() {
 function viewDeparments() {
     connection.query("SELECT * FROM department", (err, data) => {
         if (err) throw err;
+        console.log(" ")
         console.table(data)
     })
     mainQuestion()
 }
 
 function addDepartment() {
-    console.log('addDepartment')
-    mainQuestion()
-}
+    inquirer.prompt([
+        {
+        type: 'input',
+        name: 'newDepartment',
+        message: "What is your new department's name?"
+        }
+    ])
+    .then(answer => {
+        console.log(answer);
+        connection.query(`INSERT INTO department (name) VALUES('${answer.newDepartment}')`, (err, data) => {
+            if (err) throw err;
+            console.log(" ")
+            console.table(data)
+            mainQuestion()
+            })
+        })
+    };
 
 
 function addRole() {
