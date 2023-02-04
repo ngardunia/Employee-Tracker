@@ -1,9 +1,23 @@
 const connection = require('./db/connection')
 const inquirer = require('inquirer')
+const logo = require('asciiart-logo');
+const config = require('./package.json');
 require('console.table') 
 
 if (connection) {
-    console.log("Datebase is running")
+    console.log(
+        logo({
+            name: 'Employee Tracker',
+            font: 'ANSI Shadow',
+            lineChars: 8,
+            padding: 2,
+            margin: 3,
+            borderColor: 'grey',
+            logoColor: 'bold-green'
+        })
+        .right('version 1.0')
+        .render()
+    );
     mainQuestion()
 }
 
@@ -47,8 +61,9 @@ function mainQuestion() {
 
 function viewRoles() {
     console.log('view all tables in a join')
-    connection.query("SELECT role.title, role.salary, department.name FROM role JOIN department ON role.departement_id = department.id", (err, data) => {
+    connection.query("SELECT role.title, role.salary, department.name FROM role JOIN department ON role.departement_id = department.id`", (err, data) => {
         if (err) throw err;
+        console.log(" ");
         console.table(data)
     })
     mainQuestion()
@@ -93,7 +108,7 @@ function addDepartment() {
 
 
 function addRole() {
-    inquirer.promp ([
+    inquirer.prompt ([
         {
             type: 'input',
             name: 'role',
@@ -111,7 +126,7 @@ function addRole() {
         }
     ])
     .then(answer => {
-        connect.query`(INSERT INTO role(id, ${answer.role}, ${answer.salary}, ${answer.id})`, (err,data) => {
+        connect.query(`INSERT INTO role(id, ${answer.role}, ${answer.salary}, ${answer.id}`), (err,data) => {
             if(err) throw err;
             console.log(" ")
             mainQuestion()
@@ -162,6 +177,35 @@ function addEmployee() {
 
 
 function updateEmployeeRole() {
-    console.log('updateEmployee')
-    mainQuestion()
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'firstName',
+                message: 'Enter the first name of the employee you want to update:'
+            },
+            {
+                type: 'input',
+                name: 'lastName',
+                message: 'Enter the last name of the employee you want to update:'
+            },
+            {
+                type: 'input',
+                name: 'newRole',
+                message: 'Enter the new Employee role:'
+            },
+        ])
+        .then(answers => {
+            const { firstName, lastName, newRole } = answers;
+
+            let updateStatement = `UPDATE employee SET role_id = '${newRole}' WHERE first_name = '${firstName}' AND last_name = '${lastName}'`;
+            connection.query(updateStatement, (error, results) => {
+                if (error) {
+                    console.error(error);
+                } else {
+                    console.log(`Successfully updated ${firstName} ${lastName} to role ID# ${newRole}`);
+                }
+            });
+            mainQuestion()
+        });
 }

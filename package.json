@@ -4,23 +4,24 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node index.js"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/ngardunia/Employee-Tracker"
+        "type": "git",
+        "url": "git+https://github.com/ngardunia/Employee-Tracker"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/ngardunia/Employee-Tracker/issues"
+        "url": "https://github.com/ngardunia/Employee-Tracker/issues"
     },
     "homepage": "https://github.comngardunia/Employee-Tracker#readme",
     "dependencies": {
-      "console.table": "^0.10.0",
-      "inquirer": "^8.2.4",
-      "mysql2": "^3.1.0"
+        "asciiart-logo": "^0.2.7",
+        "console.table": "^0.10.0",
+        "inquirer": "^8.2.4",
+        "mysql2": "^3.1.0"
     }
-  }
+}
