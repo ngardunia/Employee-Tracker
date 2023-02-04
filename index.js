@@ -93,8 +93,30 @@ function addDepartment() {
 
 
 function addRole() {
-    console.log('addRole')
-    mainQuestion()
+    inquirer.promp ([
+        {
+            type: 'input',
+            name: 'role',
+            message: "What is the title for your new role?"
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: "What is the salary for this new role?"
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: "What is the department id for your new role?"
+        }
+    ])
+    .then(answer => {
+        connect.query`(INSERT INTO role(id, ${answer.role}, ${answer.salary}, ${answer.id})`, (err,data) => {
+            if(err) throw err;
+            console.log(" ")
+            mainQuestion()
+        }
+    })
 }
 
 
